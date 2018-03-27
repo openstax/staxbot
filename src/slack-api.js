@@ -19,11 +19,12 @@ const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN
 const SLACK_GITHUB_INSTALL_ID = process.env.SLACK_GITHUB_INSTALL_ID
 
 module.exports = (robot) => {
+  const logger = robot.log.child({name: 'slack'})
   if (!SLACK_BOT_TOKEN) {
-    robot.log.error('SLACK_BOT_TOKEN missing, skipping Slack integration')
+    logger.error('SLACK_BOT_TOKEN missing, skipping Slack integration')
   }
   if (!SLACK_GITHUB_INSTALL_ID) {
-    robot.log.error('SLACK_GITHUB_INSTALL_ID missing. This is needed to know which authentication to use when creating GitHub Issues/Cards. It can be found in the probot trace output for /installations when LOG_LEVEL=trace')
+    logger.error('SLACK_GITHUB_INSTALL_ID missing. This is needed to know which authentication to use when creating GitHub Issues/Cards. It can be found in the probot trace output for /installations when LOG_LEVEL=trace')
   }
 
   let authenticatedGitHubClient
@@ -42,7 +43,7 @@ module.exports = (robot) => {
           slack: rtmClient,
           slackWeb: webClient
         }
-        robot.log.trace(`slack_event ${name}`, name === 'authenticated' ? '(too_long_to_show_in_logs)' : payload)
+        logger.trace(`slack_event ${name}`, name === 'authenticated' ? '(too_long_to_show_in_logs)' : payload)
         callback(value)
       })
     }
@@ -113,8 +114,7 @@ module.exports = (robot) => {
         return await webClient.reactions.add({name: reactionEmoji, channel: message.channel, timestamp: ts})
       } catch (err) {
         // already reacted
-        robot.log.trace(`Slack already reacted to the message`)
-        robot.log.trace(err)
+        logger.trace(err, `Slack already reacted to the message`)
       }
     }
     async removeReaction (reactionEmoji, message) {
@@ -128,11 +128,11 @@ module.exports = (robot) => {
   }()
 
   if (!SLACK_BOT_TOKEN) {
-    robot.log('Skipping Slack connection because SLACK_BOT_TOKEN env var is not set')
+    logger.warn('Skipping Slack connection because SLACK_BOT_TOKEN env var is not set')
     return
   }
 
-  robot.log.trace('Slack connecting...')
+  logger.trace('Slack connecting...')
 
   // game start!
   const rtmClient = new RTMClient(SLACK_BOT_TOKEN)
@@ -140,18 +140,18 @@ module.exports = (robot) => {
 
   // The client will emit an 'authenticated' event on successful connection, with the `rtm.start` payload
   rtmClient.on('authenticated', (rtmStartData) => {
-    robot.log.info('Slack successfully authenticated')
+    logger.info('Authenticated')
     rtmAuthenticationInfo = rtmStartData
-    robot.log.info(rtmStartData)
+    logger.debug(rtmStartData)
   })
 
   // you need to wait for the client to fully connect before you can send messages
   rtmClient.on('connected', () => {
-    robot.log.trace('Slack connected')
+    logger.trace('Slack connected')
   })
 
   rtmClient.on('error', (payload) => {
-    robot.log.error('slack error', payload)
+    logger.error('slack error', payload)
   })
 
   // now connect

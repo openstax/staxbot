@@ -1,6 +1,7 @@
 // Move an Issue to another repository when a GitHub comment of the form `move-to {REPO_NAME}` is created on an Issue
 const REGEXP = /^move[ -]to ([^ ]+)/i
 module.exports = (robot) => {
+  const logger = robot.log.child({name: 'move-issue'})
   robot.on([
     'issue_comment.created',
     'issue_comment.edited'
@@ -12,7 +13,7 @@ module.exports = (robot) => {
     if (match) {
       const destRepoName = match[1]
       const {owner} = context.repo()
-      robot.log(`Attempting to move Issue to ${destRepoName}`)
+      robot.log.debug(`Attempting to move Issue to ${destRepoName}`)
 
       // Check if the destination repo exists
       try {
@@ -24,7 +25,7 @@ module.exports = (robot) => {
       }
 
       // Create a new Issue and copy over the title, body, labels, assignees
-      robot.log(`Creating new Issue at ${destRepoName}`)
+      robot.log.debug(`Creating new Issue at ${destRepoName}`)
       const {data: newIssue} = await context.github.issues.create({
         owner,
         repo: destRepoName,
@@ -38,6 +39,7 @@ module.exports = (robot) => {
       await context.github.issues.createComment(context.issue({body: `Moved Issue to ${newIssue.html_url}`}))
       // Close the old Issue
       await context.github.issues.edit(context.issue({state: 'closed'}))
+      logger.info(`Moved Issue to ${newIssue.html_url}`)
     }
   }
 }
