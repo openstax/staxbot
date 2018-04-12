@@ -19,6 +19,7 @@ module.exports = async (robot) => {
         robot.log.error(err.message)
         res.status(500).send('CSV Parsing Error')
       } else {
+        console.log(csv)
         res.send(csv)
       }
     }, {
