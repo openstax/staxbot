@@ -320,6 +320,10 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+argv-split@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argv-split/-/argv-split-2.0.1.tgz#be264117790dbd5ccd63ec3f449a1804814ac4c5"
+
 arr-diff@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-2.0.0.tgz#8f3b827f955a8bd669697e4a4256ac3ceae356cf"
@@ -659,7 +663,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@3.5.1:
+bluebird@3.5.1, bluebird@^3.5.0:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -2080,6 +2084,16 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+"gh-polls-bot@github:evenchange4/gh-polls-bot#1.0.3":
+  version "1.0.3"
+  resolved "https://codeload.github.com/evenchange4/gh-polls-bot/tar.gz/15f997ab268c215c3c7f9112c9973cc1b7d82950"
+  dependencies:
+    argv-split "^2.0.1"
+    probot "^3.0.2"
+    ramda "^0.25.0"
+    request "^2.83.0"
+    request-promise "^4.2.2"
 
 github-webhook-handler@^0.7.0:
   version "0.7.1"
@@ -4588,7 +4602,7 @@ probot-config@^0.2.0:
     js-yaml "^3.7.0"
     probot "^5.0.0"
 
-probot@^3.0.0:
+probot@^3.0.0, probot@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/probot/-/probot-3.0.3.tgz#bdbf00ecc30398fe49bebff55662f0c9d1161092"
   dependencies:
@@ -4776,6 +4790,10 @@ query-string@^5.0.1:
 querystringify@0.0.x:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-0.0.4.tgz#0cf7f84f9463ff0ae51c4c4b142d95be37724d9c"
+
+ramda@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
 
 randomatic@^1.1.3:
   version "1.1.7"
@@ -4978,6 +4996,15 @@ request-promise-native@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/request-promise-native/-/request-promise-native-1.0.5.tgz#5281770f68e0c9719e5163fd3fab482215f4fda5"
   dependencies:
+    request-promise-core "1.1.1"
+    stealthy-require "^1.1.0"
+    tough-cookie ">=2.3.3"
+
+request-promise@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.2.tgz#d1ea46d654a6ee4f8ee6a4fea1018c22911904b4"
+  dependencies:
+    bluebird "^3.5.0"
     request-promise-core "1.1.1"
     stealthy-require "^1.1.0"
     tough-cookie ">=2.3.3"
@@ -6014,11 +6041,11 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-wip-bot@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/wip-bot/-/wip-bot-2.1.0.tgz#fb2237800a7f176790faf503448cd1d7c0d0743c"
+wip-bot@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/wip-bot/-/wip-bot-2.4.1.tgz#7b48ef4b4add16c2e73d945da8e8ce34a546a229"
   dependencies:
-    probot "^5.0.0"
+    probot "^6.0.0"
 
 wordwrap@0.0.2:
   version "0.0.2"

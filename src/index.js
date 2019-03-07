@@ -18,6 +18,7 @@ module.exports = (robot) => {
   require('release-notifier')(robot)
   require('wip-bot')(robot)
   require('./project-events')(robot)
+  require('gh-polls-bot/src')(robot)
 
   console.log('Yay, the app was loaded!')
 

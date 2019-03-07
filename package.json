@@ -14,6 +14,7 @@
     "autolabeler": "github:probot/autolabeler",
     "commonmark": "^0.28.1",
     "first-pr-merge": "github:behaviorbot/first-pr-merge",
+    "gh-polls-bot": "github:evenchange4/gh-polls-bot#1.0.3",
     "json-2-csv": "^2.2.0",
     "new-issue-welcome": "github:behaviorbot/new-issue-welcome",
     "new-pr-welcome": "github:behaviorbot/new-pr-welcome",
@@ -27,14 +28,14 @@
     "request-info": "github:behaviorbot/request-info",
     "smee-client": "^1.0.1",
     "unfurl": "github:probot/unfurl",
-    "wip-bot": "^2.1.0"
+    "wip-bot": "^2.4.1"
   },
   "devDependencies": {
     "jest": "^22.4.2",
     "standard": "^11.0.0"
   },
   "engines": {
-    "node": ">= 7.7.0",
+    "node": ">= 9.2.0",
     "npm": ">= 4.0.0"
   },
   "standard": {

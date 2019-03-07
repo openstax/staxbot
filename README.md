@@ -57,8 +57,9 @@ This is useful for notifying multiple groups, or casually asking for help.
 
 ### Plugins
 
-These are 3rd-party plugins that are included in this bot:
+These are [3rd-party plugins](https://probot.github.io/apps/) that are included in this bot ([See more](https://probot.github.io/apps/)):
 
+- [polls](https://github.com/evenchange4/gh-polls-bot): Add quick polls to an Issue of Pull Request by typing `/polls Option1 'Option 2' "Option 3"`. It will edit the comment/body and add a poll
 - _based on_ [changelog](https://github.com/mikz/probot-changelog): Automatically ensure that the `CHANGELOG` is updated for every Pull Request (configured in the repos `/.github/config.yml`)
 - [settings](https://github.com/probot/settings): Pull Requests for GitHub repository settings
 - [autolabeler](https://github.com/probot/autolabeler): Automatically label Issues and Pull Requests based on logic in the `.github/config.yml` file
