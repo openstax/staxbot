@@ -10,7 +10,7 @@
     "test": "jest && standard --fix"
   },
   "dependencies": {
-    "@slack/client": "^4.0.0",
+    "@slack/client": "^5.0.1",
     "autolabeler": "github:probot/autolabeler",
     "commonmark": "^0.28.1",
     "first-pr-merge": "github:behaviorbot/first-pr-merge",
