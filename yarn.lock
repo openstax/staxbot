@@ -6014,12 +6014,6 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-wip-bot@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/wip-bot/-/wip-bot-2.1.0.tgz#fb2237800a7f176790faf503448cd1d7c0d0743c"
-  dependencies:
-    probot "^5.0.0"
-
 wordwrap@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.2.tgz#b79669bb42ecb409f83d583cad52ca17eaa1643f"

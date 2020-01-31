@@ -26,8 +26,7 @@
     "release-notifier": "github:release-notifier/release-notifier",
     "request-info": "github:behaviorbot/request-info",
     "smee-client": "^1.0.1",
-    "unfurl": "github:probot/unfurl",
-    "wip-bot": "^2.1.0"
+    "unfurl": "github:probot/unfurl"
   },
   "devDependencies": {
     "jest": "^22.4.2",
