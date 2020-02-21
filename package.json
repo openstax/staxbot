@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@slack/client": "^4.0.0",
-    "probot": "^9.9.1",
+    "probot": "^9.9.5",
     "probot-addon-release-notifier": "github:release-notifier/release-notifier",
     "probot-addon-settings": "github:probot/settings#af40e21548181e8221a01bbcf125d1ee28f50a48",
     "probot-config": "^1.1.0",
