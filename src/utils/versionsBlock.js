@@ -1,53 +1,27 @@
-import { whitespace, beginningOfStringOrNewline, newline, newlineCharacters } from './regexes.js'
-
-const blockItem = `${newline}+${whitespace}*\\- (?<name>[^:]+): (?<version>[^ ${newlineCharacters}]+)(?<locked> \\(locked\\))?`
-const blockItems = `(${blockItem})+`
-const versionBlockRegex = `${beginningOfStringOrNewline}(?<block>#* ?\\*{0,2}versions:?\\*{0,2}:?${blockItems})`
-
-const getVersionsBlock = (body) => {
-  const blockMatch = body.match(new RegExp(versionBlockRegex, 'i'))
-  return blockMatch && blockMatch.groups.block
-}
+import {getItems, getItemValue, setItems} from './configBlock'
 
 export const getVersions = (body, filter = () => true) => {
-  const versionsText = getVersionsBlock(body)
+  const items = getItems(body, 'versions', filter)
 
-  if (!versionsText) {
+  if (!items) {
     return null
   }
 
-  return versionsText.match(new RegExp(blockItem, 'gi'))
-    .map(itemText => {
-      const {groups} = itemText.match(new RegExp(blockItem, 'i'))
-      return {...groups, locked: !!groups.locked}
-    })
-    .filter(filter)
-    .reduce((result, item) => ({...result, [item.name]: item.version}), {})
+  return Object.entries(items).reduce((result, [name, {value}]) => ({...result, [name]: value}), {})
 }
 
 export const getVersion = (body, itemName) => {
-  const versions = getVersions(body)
-
-  if (!versions) {
-    return null
-  }
-
-  return versions[itemName]
+  return getItemValue(body, 'versions', itemName)
 }
 
 export const setVersions = (body, versions) => {
-  const lockedVersions = getVersions(body, item => item.locked) || {}
-  const newVersions = {...versions, ...lockedVersions}
-  const versionsText = getVersionsBlock(body)
-  const itemsText = versionsText && versionsText.match(new RegExp(blockItems, 'i'))[0]
+  const lockedVersions = getItems(body, 'versions', item => item.flags.includes('locked'))
+  const newVersions = {
+    ...Object.entries(versions).reduce((result, [name, value]) => ({...result, [name]: {value}}), {}),
+    ...lockedVersions
+  }
 
-  const newItemsText = Object.entries(newVersions).reduce((result, [name, version]) =>
-    result + `\n- ${name}: ${version}${name in lockedVersions ? ' (locked)' : ''}`
-    , '')
-
-  return itemsText
-    ? body.replace(itemsText, newItemsText)
-    : body + '\n\nversions:' + newItemsText
+  return setItems(body, 'versions', newVersions)
 }
 
 export const setVersion = (body, itemName, version) => {

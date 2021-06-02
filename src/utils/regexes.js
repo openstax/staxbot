@@ -3,7 +3,7 @@ export const newlineCharacters = '\\n\\r'
 export const whitespace = `[${whitespaceCharacters}]`
 export const newline = `[${newlineCharacters}]`
 
-export const beginningOfStringOrNewline = `^([^${newlineCharacters}]+${newline}+)*[${newlineCharacters}]*`
+export const beginningOfStringOrNewline = `^(.+${newline}+)*${newline}*`
 export const beginningOfStringOrWhitespace = `^([^${whitespaceCharacters}]+[${whitespaceCharacters}]+)*[${whitespaceCharacters}]*`
 export const endOfStringOrWhitespace = `([${whitespaceCharacters}]+[^${whitespaceCharacters}]+)*[${whitespaceCharacters}]*$`
 

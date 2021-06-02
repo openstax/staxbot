@@ -24,9 +24,9 @@ const repoConfigs = [
   {
     repo: 'rex-web',
     owner: 'openstax',
-    match: (pr) => pr.draft !== true
-      && !pr.labels.map(({name}) => name).includes('disable-base-merge')
-      && pr.head.ref.indexOf('update-content-') !== 0
+    match: (pr) => pr.draft !== true &&
+      !pr.labels.map(({name}) => name).includes('disable-base-merge') &&
+      pr.head.ref.indexOf('update-content-') !== 0
   },
   {
     repo: 'testing-stuff',
